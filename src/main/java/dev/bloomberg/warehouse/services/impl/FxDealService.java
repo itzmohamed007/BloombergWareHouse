@@ -23,7 +23,8 @@ public class FxDealService extends _AbstractService<Long, FxDealRequest, FxDealR
     @Override
     public Optional<FxDealResponse> create(@Valid FxDealRequest request) {
         FxDeal fxDeal = mapper.toEntityFromRequest(request);
-        if(isDuplicate(fxDeal))
+
+        if(repository.existsById(fxDeal.getId()))
             throw new ModularException("FxDeal with id " + fxDeal.getId() + " is duplicated", HttpStatus.BAD_REQUEST);
 
         try {
@@ -31,14 +32,6 @@ public class FxDealService extends _AbstractService<Long, FxDealRequest, FxDealR
             return Optional.of(mapper.toResponse(createdFxDeal));
         } catch (Exception e) {
             throw new ModularException("an error occurred while creating FxDeal " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    private boolean isDuplicate(FxDeal fxDeal) {
-        try {
-            return repository.existsById(fxDeal.getId());
-        } catch (Exception e) {
-            throw new ModularException("an error occurred while checking if FxDeal is a duplicate", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
