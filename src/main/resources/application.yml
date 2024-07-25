@@ -1,0 +1,25 @@
+server:
+  port: 9000
+
+logging:
+  level:
+    org.springframework.beans.factory: ERROR
+    org.springframework.security: trace
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bloomberg_warehouse
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+version: "v1"
