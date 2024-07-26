@@ -54,3 +54,17 @@ The application is Dockerized using a multi-stage Dockerfile, optimizing the Doc
 Docker Compose is employed to orchestrate the deployment of two services:
 - The Spring Boot application [PORT 9000].
 - Postgres 13, serving as the database [PORT 5432].
+
+## Running the Application
+
+# Run Docker Compose (foreground mode)
+make run
+
+# Run Docker Compose (background mode)
+make run-detached
+
+# Access the API:
+The API is now accessible at - **[POST] http://localhost:9000/api/deals**
+
+## Stop the Application
+make down
