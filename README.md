@@ -64,7 +64,7 @@ make run
 make run-detached
 
 # Access the API:
-The API is now accessible at - **[POST] http://localhost:9000/api/deals**
+The API is now accessible at - **[POST] http://localhost:9000/api/v1/deals**
 
 ## Stop the Application
 make down
