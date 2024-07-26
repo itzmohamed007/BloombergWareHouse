@@ -14,12 +14,21 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * {@link FxDeal} service providing requested functionalities
+ */
 @Service
 @RequiredArgsConstructor
 public class FxDealService extends _AbstractService<Long, FxDealRequest, FxDealResponse, FxDeal, FxDealRepository, FxDealMapper> {
     private final FxDealRepository repository;
     private final FxDealMapper mapper;
 
+    /**
+     * check for duplicates and creates a new deal
+     *
+     * @param request DTO containing data for deal creation.
+     * @return Optional<FxDealResponse> containing created deal data
+     */
     @Override
     public Optional<FxDealResponse> create(@Valid FxDealRequest request) {
         FxDeal fxDeal = mapper.toEntityFromRequest(request);

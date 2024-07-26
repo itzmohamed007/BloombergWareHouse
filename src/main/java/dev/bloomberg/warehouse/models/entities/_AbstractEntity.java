@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 
 /**
  * Abstract base class for entities in the application.
- * Provides common fields such as id, creation timestamp, and update timestamp.
+ * Provides common fields such as id and timestamps.
  * Subclasses should use the @MappedSuperclass annotation.
  */
 @Getter

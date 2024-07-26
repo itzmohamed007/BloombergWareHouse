@@ -15,7 +15,8 @@ import org.springframework.http.ResponseEntity;
 import java.util.Objects;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -30,8 +31,10 @@ class FxDealControllerTest {
         controller.setService(service);
     }
 
+    /**
+     * assure that controller is working as expected with proper arguments
+     */
     @Test
-    // assure that controller is working as expected with proper arguments
     void createSuccess() {
         FxDealRequest request = FxDealRequest
                 .builder()

@@ -11,8 +11,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.io.Serializable;
 
 /**
- * This interface represents the base entity with common fields like ID, creation timestamp,
- * update timestamp, and version. Entities in the application should implement this interface.
+ * This interface represents the base entity with common fields like ID and timestamps.
+ * Entities in the application should implement this interface.
  *
  * @param <ID> The type of the entity's identifier.
  */

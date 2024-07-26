@@ -30,7 +30,9 @@ class FxDealServiceTest {
     @InjectMocks
     private FxDealService service;
 
-    // declared here to reduce boilerplate code (used in all three unit tests)
+    /**
+     * declared here to reduce boilerplate code (used in all three unit tests)
+     */
     private FxDealRequest fxDealRequest;
     private FxDeal fxDeal;
     private FxDealResponse fxDealResponse;
@@ -50,9 +52,10 @@ class FxDealServiceTest {
                 .build();
     }
 
-
+    /**
+     * assuring that all steps are followed when data is correct
+     */
     @Test
-    // assuring that all steps are followed when data is correct
     void createSuccess() {
         when(mapper.toEntityFromRequest(fxDealRequest)).thenReturn(fxDeal);
         when(repository.existsById(fxDeal.getId())).thenReturn(false);
@@ -65,8 +68,10 @@ class FxDealServiceTest {
         assertEquals(result.get(), fxDealResponse);
     }
 
+    /**
+     * assuring that an exception will be thrown if a duplicated request have been sent
+     */
     @Test
-    // assuring that an exception will be thrown if a duplicated request have been sent
     public void createDuplicateId() {
         when(mapper.toEntityFromRequest(fxDealRequest)).thenReturn(fxDeal);
         when(repository.existsById(1L)).thenReturn(true);
@@ -80,8 +85,10 @@ class FxDealServiceTest {
         verify(repository, never()).saveAndFlush(any(FxDeal.class));
     }
 
+    /**
+     * assuring that an exception is thrown when data persistence fails
+     */
     @Test
-    // assuring that an exception is thrown when data persistence fails
     public void createFailed() {
         when(mapper.toEntityFromRequest(fxDealRequest)).thenReturn(fxDeal);
         when(repository.saveAndFlush(fxDeal)).thenThrow(ModularException.class);

@@ -17,6 +17,12 @@ import java.util.Map;
  */
 @RestControllerAdvice
 public class GlobalExceptionsHandler {
+    /**
+     * handles dtos validation errors, formats error messages and send them to the client
+     *
+     * @param ex @{@link MethodArgumentNotValidException} thrown from validation annotations in request dtos
+     * @return ResponseEntity containing error messages
+     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationException(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
@@ -28,14 +34,15 @@ public class GlobalExceptionsHandler {
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
+    /**
+     * handles modular exception thrown in modular service
+     *
+     * @param ex @{@link ModularException} contains error message and http status code
+     * @return ResponseEntity containing error message
+     */
     @ExceptionHandler(ModularException.class)
     public ResponseEntity<Map<String, String>> handleModularException(ModularException ex) {
         return new ResponseEntity<>(Map.of("message", ex.getMessage()), ex.getStatus());
     }
-
-//    @ExceptionHandler(HttpMessageNotReadableException.class)
-//    public ResponseEntity<Map<String, String>> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex) {
-//        return new ResponseEntity<>(Map.of("message", ex.getMessage()), HttpStatus.BAD_REQUEST);
-//    }
 }
 

@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 
 /**
  * Base class for response DTOs representing {@link _AbstractEntity}.
- * AbstractResponse includes common fields such as id, createdAt, updatedAt, and version.
+ * _AbstractResponse includes common fields such as id and the timestamps.
  * This class is intended to be extended by specific response DTOs in the system.
  */
 @Getter
